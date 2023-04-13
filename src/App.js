@@ -60,6 +60,7 @@ export default class App extends React.Component {
         tempArray.push(this.state.ques[index]);
       }
     }
+
     this.setState({
       ques: tempArray,
       totalTrueAnswer: currentTrue,
@@ -67,6 +68,24 @@ export default class App extends React.Component {
       status: status
     })
   }
+
+  componentDidUpdate() {
+    let audioTrue = document.getElementById("Player-True");
+    let audioFail = document.getElementById("Player-Fail");
+    if (
+      this.state.totalAnswered !== 0 &&
+      this.state.totalAnswered <= 5 &&
+      this.state.status === true) {
+        audioTrue.play();
+    } else if (
+      this.state.totalAnswered !== 0 &&
+      this.state.totalAnswered <= 5 &&
+      this.state.status === false) {
+        audioFail.play();
+    }
+  }
+
+
 
   render() {
     return (
@@ -93,13 +112,13 @@ export default class App extends React.Component {
 
               {
                 (this.state.totalAnswered !== 0 && this.state.status === true) &&
-                <audio id="Player" autoPlay={true}>
+                <audio id="Player-True">
                   <source src={"./assets/audios/wow.wav"} type="audio/mp3"></source>
                 </audio>
               }
               {
                 (this.state.totalAnswered !== 0 && this.state.status === false) &&
-                <audio id="Player" autoPlay={true}>
+                <audio id="Player-Fail">
                   <source src={"./assets/audios/fail.wav"} type="audio/mp3"></source>
                 </audio>
               }

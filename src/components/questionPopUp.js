@@ -66,12 +66,12 @@ export default class QuestionPopUp extends React.Component {
     handClick = (key) => {
         this.setState({
             cliked: true,
-        })
+        });
+
         let status;
         if (key === answer[this.props.level][this.props.setQues][2]) {
             status = true;
-        }
-        else {
+        } else {
             status = false;
         }
         this.props.setResult(status, 30 - this.state.countdown);
