@@ -10,16 +10,16 @@ export default class App extends React.Component {
       isOpenPopUp: false,
       display: "block",
       ques: [
-        ["#fff", "#000", false],
-        ["#fff", "#000", false],
-        ["#fff", "#000", false],
-        ["#fff", "#000", false],
-        ["#fff", "#000", false],
-        ["#fff", "#000", false],
+        ["#48484A", "#DFDEDF", false],
+        ["#48484A", "#DFDEDF", false],
+        ["#48484A", "#DFDEDF", false],
+        ["#48484A", "#DFDEDF", false],
+        ["#48484A", "#DFDEDF", false],
+        ["#48484A", "#DFDEDF", false],
       ],
       totalAnswered: 0,
       totalTrueAnswer: 0,
-      totalTime: 0,
+      totalTime: 0
     }
   }
 
@@ -85,7 +85,9 @@ export default class App extends React.Component {
     }
   }
 
-
+  reloadPage() {
+    window.location.reload();
+  }
 
   render() {
     return (
@@ -123,7 +125,7 @@ export default class App extends React.Component {
                 </audio>
               }
 
-              <h3>Select level</h3>
+              <h3 className="text-linear text-heading">Select level</h3>
               <div id="levels">
                 <div className="level" style={{ backgroundColor: this.state.ques[0][0], color: this.state.ques[0][1] }}>
                   <div onClick={() => this.openPopUp(0)} className="decor-level" >
@@ -195,15 +197,17 @@ export default class App extends React.Component {
           }
 
           {
-            // all questions done, display result
+            // if all questions done, display result
             (this.state.totalAnswered === 6) &&
-            <div id="done-popUp">
-              <h1>Congratulation!</h1>
+            <div id="done-popUp" onClick={this.reloadPage}>
+              <h1 className="text-linear">Congratulation!</h1>
               <p>Result: {this.state.totalTrueAnswer}/6</p>
               <p>Time taken: {this.state.totalTime} seconds</p>
+              <span class="material-symbols-outlined">
+                refresh
+              </span>
             </div>
           }
-
         </div>
       </>
     )

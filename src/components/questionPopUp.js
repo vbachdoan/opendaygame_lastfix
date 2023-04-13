@@ -87,7 +87,7 @@ export default class QuestionPopUp extends React.Component {
                         (this.props.level !== 0 && this.props.level !== 3) &&
                         <img className="question" loading="lazy" alt="question" src={sourse} />
                     }
-                    <h3 style={{ color: "#fff" }}>{answer[this.props.level][this.props.setQues][1]}</h3>
+                    <h3 className="text-linear">{answer[this.props.level][this.props.setQues][1]}</h3>
                     <div id="wrap-answer">
                         {
                             answer[this.props.level][this.props.setQues][0].map((option, key) =>
